@@ -1,0 +1,35 @@
+{
+  "name": "stateful-auth",
+  "version": "1.0.0",
+  "description": "Stateful Authentication Example",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitesh1409/stateful-auth.git"
+  },
+  "author": "Mitesh Prajapati",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mitesh1409/stateful-auth/issues"
+  },
+  "homepage": "https://github.com/mitesh1409/stateful-auth#readme",
+  "dependencies": {
+    "@types/node": "^24.10.1",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
