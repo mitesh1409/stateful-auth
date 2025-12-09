@@ -19,7 +19,7 @@ app.use(cookieParser());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 const HOST = process.env.HOST || '127.0.0.1';

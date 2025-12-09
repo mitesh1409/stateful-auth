@@ -5,7 +5,9 @@ import User from "../models/user.model.js";
 import * as Session from "../services/sessions.js";
 
 function signUp(req, res) {
-    res.render('users/sign-up');
+    res.render('users/sign-up', {
+        metaTitle: 'Stateful Authentication Example | Sign Up'
+    });
 }
 
 async function doSignUp(req, res) {
@@ -22,6 +24,7 @@ async function doSignUp(req, res) {
         return res
             .status(400)
             .render('users/sign-up', {
+                metaTitle: 'Stateful Authentication Example | Sign Up',
                 status: 'failure',
                 error: 'All fields are required.'
             });
@@ -44,6 +47,7 @@ async function doSignUp(req, res) {
         return res
             .status(500)
             .render('users/sign-up', {
+                metaTitle: 'Stateful Authentication Example | Sign Up',
                 status: 'failure',
                 error: 'Something went wrong. Please try again.'
             });
@@ -52,13 +56,16 @@ async function doSignUp(req, res) {
     return res
         .status(201)
         .render('users/sign-up', {
+            metaTitle: 'Stateful Authentication Example | Sign Up',
             status: 'success',
             message: 'User sign-up successful.'
         });
 }
 
 function signIn(req, res) {
-    res.render('users/sign-in');
+    res.render('users/sign-in', {
+        metaTitle: 'Stateful Authentication Example | Sign In'
+    });
 }
 
 async function doSignIn(req, res) {
@@ -68,6 +75,7 @@ async function doSignIn(req, res) {
         return res
             .status(400)
             .render('users/sign-in', {
+                metaTitle: 'Stateful Authentication Example | Sign In',
                 error: 'Email and Password are required'
             });
     }
@@ -78,6 +86,7 @@ async function doSignIn(req, res) {
         return res
             .status(401)
             .render('users/sign-in', {
+                metaTitle: 'Stateful Authentication Example | Sign In',
                 error: 'Failed to login. Email or Password incorrect.'
             });
     }
@@ -87,6 +96,7 @@ async function doSignIn(req, res) {
         return res
             .status(401)
             .render('users/sign-in', {
+                metaTitle: 'Stateful Authentication Example | Sign In',
                 error: 'Failed to login. Email or Password incorrect.'
             });
     }
@@ -117,6 +127,7 @@ async function doSignIn(req, res) {
 function dashboard(req, res) {
     const user = req.user;
     res.render('users/dashboard', {
+        metaTitle: 'Stateful Authentication Example | Dashboard',
         userFullName: `${user.firstName} ${user.lastName}`
     });
 }
