@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from './database/connectDB.js';
 import homeController from './controllers/home.controller.js';
 import usersRouter from './routes/users.router.js';
+import requestLogger from './middlewares/requestLogger.js';
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ connectDB();
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(requestLogger);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
