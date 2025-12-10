@@ -8,6 +8,12 @@ function get(sessionId) {
     return sessions.get(sessionId);
 }
 
+function remove(sessionId) {
+    return sessions.delete(sessionId);
+}
+
 export {
-    set, get
+    set,
+    get,
+    remove
 };

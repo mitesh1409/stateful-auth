@@ -5,12 +5,20 @@ import User from "../models/user.model.js";
 import * as Session from "../services/sessions.js";
 
 function signUp(req, res) {
+    if (req.authUser) {
+        return res.redirect('/users/dashboard');
+    }
+
     res.render('users/sign-up', {
         metaTitle: 'Stateful Authentication Example | Sign Up'
     });
 }
 
 async function doSignUp(req, res) {
+    if (req.authUser) {
+        return res.redirect('/users/dashboard');
+    }
+
     const {
         firstName,
         lastName,
@@ -63,12 +71,20 @@ async function doSignUp(req, res) {
 }
 
 function signIn(req, res) {
+    if (req.authUser) {
+        return res.redirect('/users/dashboard');
+    }
+
     res.render('users/sign-in', {
         metaTitle: 'Stateful Authentication Example | Sign In'
     });
 }
 
 async function doSignIn(req, res) {
+    if (req.authUser) {
+        return res.redirect('/users/dashboard');
+    }
+
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -125,11 +141,30 @@ async function doSignIn(req, res) {
 }
 
 function dashboard(req, res) {
-    const user = req.user;
+    if (!req.authUser) {
+        return res.redirect('/users/sign-in');
+    }
+
+    const authUser = req.authUser;
     res.render('users/dashboard', {
         metaTitle: 'Stateful Authentication Example | Dashboard',
-        userFullName: `${user.firstName} ${user.lastName}`
+        userFullName: `${authUser.firstName} ${authUser.lastName}`
     });
+}
+
+function signOut(req, res) {
+    if (!req.authUser) {
+        return res.redirect('/users/sign-in');
+    }
+
+    // Remove session entry for this user from the server side.
+    Session.remove(req.cookies.sId);
+
+    // Remove the cookie as well.
+    res.clearCookie('sId');
+
+    // Redirect to sign in page.
+    return res.redirect('/users/sign-in');
 }
 
 export {
@@ -137,5 +172,6 @@ export {
     doSignUp,
     signIn,
     doSignIn,
-    dashboard
+    dashboard,
+    signOut
 };
