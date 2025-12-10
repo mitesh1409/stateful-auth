@@ -133,8 +133,8 @@ async function doSignIn(req, res) {
 
     // Set cookie with sessionId.
     // Here we only send the session id to the client via cookie.
-    // So in the subsequent requests client will send this back to the server via cookie.
-    // This is process implicit from client's end.
+    // So in the subsequent requests, client will send this back to the server via cookie.
+    // This process is implicit from client's end.
     res.cookie('sId', sessionId);
 
     return res.redirect('/users/dashboard');
